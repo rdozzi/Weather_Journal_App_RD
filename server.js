@@ -25,7 +25,35 @@ const port = 8000;
 
 const server = app.listen(port, listening);
 
+// Callback to debug
 function listening() {
     console.log('Server Running');
     console.log(`Running on localhost: ${port}`);
+}
+
+// Initialize all route with a callback function
+app.get('/all', sendData);
+
+// Callback function to complete GET '/all'
+// req = request; res = response
+function sendData(req, res){
+    res.get(projectData);
+}
+
+// Post Route
+app.post('/add', appendData);
+
+//req = request; res = response
+function appendData(req, res){
+    
+    //Define variable to capture data pulled from website and API connection
+    let data = req.body;
+
+    //Create the key-value pairs to capture all of the data; date, temperature, (user) feeling
+    data['date'] = data.date;
+    data['temperature'] = data.temperature;
+    data['feeling'] = data.feeling;
+
+    res.send(projectData);
+
 }
