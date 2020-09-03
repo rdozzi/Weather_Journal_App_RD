@@ -37,7 +37,7 @@ app.get('/all', sendData);
 // Callback function to complete GET '/all'
 // req = request; res = response
 function sendData(req, res){
-    res.get(projectData);
+    res.send(projectData);
 }
 
 // Post Route
@@ -49,11 +49,12 @@ function appendData(req, res){
     //Define variable to capture data pulled from website and API connection
     let data = req.body;
 
-    //Create the key-value pairs to capture all of the data; date, temperature, (user) feeling
-    data['date'] = data.date;
-    data['temperature'] = data.temperature;
-    data['feeling'] = data.feeling;
+    //Create the key-value pairs to capture all of the data: date, temperature, (user) feeling and append to projectDats
+    projectData['date'] = data.date;
+    projectData['temperature'] = data.temperature;
+    projectData['feeling'] = data.feeling;
 
-    res.send(projectData);
+    // End the response process
+    res.end();
 
 }
