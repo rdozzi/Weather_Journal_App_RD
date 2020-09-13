@@ -16,9 +16,9 @@ const generateAction = document.getElementById('generate');
 
 const getDate = document.getElementById('date');
 const getLocation = document.getElementById('location');
+const getCountry = document.getElementById('country');
 const getTemp = document.getElementById('temp');
 const getContent = document.getElementById('content');
-
 
 //
 
@@ -32,8 +32,9 @@ function performAction(e){
 
         .then(function(data){
             console.log(data); // Used to see what data output
+            console.log(data.sys.country);
             const tempRounded = Math.round(data.main.temp) - 273; //Convert from Kelvin to Celsius
-            postWeatherData('/add', {date:newDate,location:data.name,temp:tempRounded,content:newFeeling});
+            postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,temp:tempRounded,content:newFeeling});
             updateUI();
         });
 }
@@ -64,7 +65,6 @@ const postWeatherData = async(url='', data = {}) => {
     console.log(response); 
     try {
         const weatherInfo = await response.json();
-        //console.log(weatherInfo);
         return weatherInfo;
     }
     catch(error){
@@ -78,10 +78,11 @@ const updateUI = async () => {
     try{
         const allData = await request.json();
         console.log(allData); 
-        getDate.innerHTML = `${allData.date}`;
-        getLocation.innerHTML = `${allData.location}`;
-        getTemp.innerHTML = `${allData.temp} C`;
-        getContent.innerHTML = `${allData.content}`
+        getDate.innerHTML = `Date: ${allData.date}`;
+        getLocation.innerHTML = `Location: ${allData.location}`;
+        getCountry.innerHTML = `Country: ${allData.country}`;
+        getTemp.innerHTML = `Temperature: ${allData.temp} C`;
+        getContent.innerHTML = `User Feeling: ${allData.content}`
     }
     catch(error){
         console.log('error', error);
