@@ -34,9 +34,10 @@ function listening() {
 // Initialize all route with a callback function
 app.get('/all', sendData);
 
-// Callback function to complete GET '/all'
+// Callback function to complete GET '/all
 // req = request; res = response
 function sendData(req, res){
+    console.log(req);
     res.send(projectData);
 }
 
@@ -53,8 +54,7 @@ function appendData(req, res){
     projectData['date'] = data.date;
     projectData['temperature'] = data.temperature;
     projectData['feeling'] = data.feeling;
-
+    
     // End the response process
-    res.end();
-
 }
+
