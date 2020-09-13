@@ -51,9 +51,9 @@ function appendData(req, res){
 
     //Create the key-value pairs to capture all of the data: date, temperature, (user) feeling and append to projectDats
     projectData['date'] = data.date;
+    projectData['location'] = data.location;
     projectData['temp'] = data.temp;
     projectData['content'] = data.content;
     console.log(projectData);
-    // End the response process
 }
 
