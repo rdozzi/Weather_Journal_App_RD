@@ -34,7 +34,8 @@ function performAction(e){
             console.log(data); // Used to see what data output
             console.log(data.sys.country);
             const tempRounded = Math.round(data.main.temp) - 273; //Convert from Kelvin to Celsius
-            postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,temp:tempRounded,content:newFeeling});
+            postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,
+                temp:tempRounded,content:newFeeling});
             updateUI();
         });
 }
