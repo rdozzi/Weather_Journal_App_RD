@@ -8,7 +8,7 @@ body{
     grid-auto-rows: minmax(100px, auto);
     /* grid-template-columns:  */
     align-items: center;
-    height:110vh;
+    height:100vh;
     background: #f23557;
     color: #f0d43a;
     justify-content: center;
@@ -21,6 +21,7 @@ body{
     display: flex;
     flex-direction: column;
     text-align: center;
+    align-items: center;
 }
 
 #entryHolder{
@@ -35,6 +36,10 @@ body{
     background: #f23557
 }
 
+.entry{
+    width: 395px;
+}
+
 /*  Basic Styling To Override Default For Basic HTML Elements */
 label{
     display:block;
@@ -45,7 +50,7 @@ label{
 input{
     display:block;
     height: 40px;
-    width: 390px;
+    width: 395px;
     background:#22b2da;
     color: #f0d43a;
     font-size: 20px;
@@ -76,6 +81,7 @@ textarea{
     font-family: 'Oswald', sans-serif;
     text-align: center;
     vertical-align: middle;
+    width: 395px;
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
