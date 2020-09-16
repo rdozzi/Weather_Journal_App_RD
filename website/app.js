@@ -4,7 +4,7 @@
 let d = new Date();
 const monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
 'September', 'October', 'November', 'December'];
-const daysOfWeekList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+const daysOfWeekList = ['','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 let month = monthsList[d.getMonth()];
 let day = daysOfWeekList[d.getDay()];
 let newDate = `${day}, ${month} ${d.getDate()}, ${d.getFullYear()}`;
