@@ -2,7 +2,12 @@
 
 // Create a new date instance dynamically with JS
 let d = new Date();
-let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
+const monthsList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 
+'September', 'October', 'November', 'December'];
+const daysOfWeekList = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+let month = monthsList[d.getMonth()];
+let day = daysOfWeekList[d.getDay()];
+let newDate = `${day}, ${month} ${d.getDate()}, ${d.getFullYear()}`;
 
 // Personal API Key for OpenWeatherMap API
 //API URL Call Info: api.openweathermap.org/data/2.5/weather?q={city name}&appid={your api key}
@@ -33,7 +38,7 @@ function performAction(e){
         .then(function(data){
             console.log(data); // Used to see what data output
             console.log(data.sys.country);
-            const tempRounded = Math.round(data.main.temp) - 273; //Convert from Kelvin to Celsius
+            const tempRounded = Math.round(data.main.temp); //Round temperature to nearest ones position
             postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,
                 temp:tempRounded,content:newFeeling});
             updateUI();
@@ -42,7 +47,7 @@ function performAction(e){
 
 /* Function to GET Web API Data*/
 const getWeatherData = async (baseURL,zip,key) => {
-    const res = await fetch(baseURL+zip+key)
+    const res = await fetch(`${baseURL}${zip}&units=imperial${key}`)
     try {
         const weatherInfo = await res.json();
         return weatherInfo;
@@ -82,7 +87,7 @@ const updateUI = async () => {
         getDate.innerHTML = `Date: ${allData.date}`;
         getLocation.innerHTML = `Location: ${allData.location}`;
         getCountry.innerHTML = `Country: ${allData.country}`;
-        getTemp.innerHTML = `Temperature: ${allData.temp} C`;
+        getTemp.innerHTML = `Temperature: ${allData.temp} F`;
         getContent.innerHTML = `User Feeling: ${allData.content}`
     }
     catch(error){
