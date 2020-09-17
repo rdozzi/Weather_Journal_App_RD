@@ -34,14 +34,16 @@ function performAction(e){
     const newZip = getZip.value;
     const newFeeling = getFeeling.value;
     getWeatherData(baseURL,newZip,apiKey)
-
         .then(function(data){
             console.log(data); // Used to see what data output
-            console.log(data.sys.country);
-            const tempRounded = Math.round(data.main.temp); //Round temperature to nearest ones position
-            postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,
-                temp:tempRounded,content:newFeeling});
-            updateUI();
+            if(String(data.cod) === '404'){
+                alert('Zip Code Not Found, Please Enter Another');
+            } else{
+                const tempRounded = Math.round(data.main.temp); //Round temperature to nearest ones position
+                postWeatherData('/add', {date:newDate,location:data.name,country:data.sys.country,
+                    temp:tempRounded,content:newFeeling});
+                updateUI();
+            }
         });
 }
 
